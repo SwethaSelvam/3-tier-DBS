@@ -1,0 +1,16 @@
+#!/bin/bash
+yum install -y httpd
+yum install -y mysql-server mysql-common mysql-client
+/etc/init.d/mysqld start
+mysqladmin -u root password 'root'
+cd /opt/codedeploy-agent/deployment-root/
+pwd
+cd `ls -ltr | tail -1 | tr -s ' ' | cut -d ' ' -f 9`
+pwd
+cd `ls -ltr | tail -1 | tr -s ' ' | cut -d ' ' -f 9`
+pwd
+#mv deployment-archive/apache-tomcat-6.0.43/ /usr/share/tomcat6
+cp -R deployment-archive/* /home/ec2-user/
+mysql -uroot -proot < /home/ec2-user/db.sql
+
+
